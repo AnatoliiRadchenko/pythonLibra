@@ -1,11 +1,35 @@
+#
+# author: Anatolii Radchenko
+# description: python library
+# @ Rome 2025
+#
 class Libra:
-  def pressEnter(self):
-    _input = 1 
-    while _input!='': _input=input('press Enter')
   def __init__(self,debug=False):
-    self.isDebug=debug
-    globals()["subprocess"] = __import__("subprocess")
+    self.isDebug = debug
+    self.colors = { 
+        "red":'\033[91m',
+        "green":'\033[92m',
+        "grey":'\033[90m',
+        "cend": '\033[0m'
+    }
+    self.dbLang={}
+    self.importModule("platform")
+    self.importModule("subprocess")
+    self.osType = platform.system() # Windows Linux
 
+    
+  def changeLanguage(self,_arg):
+    with open('lang/'+_arg+'.json', 'r') as f:
+        self.dbLang  = json.load(f)
+
+  def cprint( self,_msg, _color = 'green' ): print( self.colors[ _color ] + _msg + self.colors['cend'] )
+  def clearScreen(self,msg): 
+      os.system('cls' if self.osType == "Windows" else 'clear')
+      if(msg): self.cprint(self.lang('title'))
+  def lang(self,_tag): return _tag if _tag not in self.dbLang else self.dbLang[_tag] 
+  def pressEnter(self):
+    _input = 1
+    while _input!='': _input=input('press Enter')  
   def debug(self,msg):
     if(self.isDebug): print(': '+msg)
   def su(self):
