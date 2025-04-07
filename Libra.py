@@ -24,7 +24,7 @@ class Libra:
         self.dbLang  = json.load(f)
 
   def cprint( self,_msg, _color = 'green' ): print( self.colors[ _color ] + _msg + self.colors['cend'] )
-  def clearScreen(self,msg): 
+  def clearScreen(self,msg=False): 
       os.system('cls' if self.osType == "Windows" else 'clear')
       if(msg): self.cprint(self.lang('title'))
   def lang(self,_tag): return _tag if _tag not in self.dbLang else self.dbLang[_tag] 
