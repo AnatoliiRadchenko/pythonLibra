@@ -13,6 +13,7 @@ class Libra:
         "cend": '\033[0m'
     }
     self.dbLang={}
+    self.importModule("json")
     self.importModule("platform")
     self.importModule("subprocess")
     self.osType = platform.system() # Windows Linux
