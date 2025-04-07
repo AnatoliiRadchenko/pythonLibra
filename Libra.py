@@ -1,6 +1,6 @@
 class Libra:
   def pressEnter(self):
-    _input=1
+    _input = 1
     while _input!='': _input=input('press Enter')
   def __init__(self,debug=False):
     self.isDebug=debug
